@@ -26,7 +26,7 @@
 		Sommersemester 2017, 1. Übungsblatt
 	\end{Large}\\
 	\begin{small}
-		Philipp X, Luis Herrmann; Tutor: X; Mi 10:00-12:00
+		Philipp Thiele, Luis Herrmann; Tutor: X; Mi 10:00-12:00
 	\end{small}
 	
 	\vspace{-10pt}
@@ -58,7 +58,34 @@ Eine nebenläufige, asynchrone Ausführung von Prozessen führt nicht notwendige
 
 \section*{Aufgabe 5}
 \begin{enumerate}[a)]
-	\item Es gibt insgesamt 10 mögliche Ergebnisse, nämlich (0,0,0), (0,0,1), (0,2,1), (0,2,2), (1,1,1), (1,1,2), (1,2,1), (1,2,3), (2,2,1), (2,2,4). Diese lassen sich über Fallunterscheidungen ausführen:
+	\item Es gibt insgesamt 10 mögliche Ergebnisse, nämlich (0,0,0), (0,0,1), (0,2,1), (0,2,2), (1,1,1), (1,1,2), (1,2,1), (1,2,3), (2,2,1), (2,2,4). Diese treten für die 20 verschiedenen verschachtelten Ausführungen des Programmes auf:
+	
+	\begin{tabular}{|c|c|}
+		\hline Verschachtelung $P$ & Endergebnis $(x,y,z)$\\\hline
+		$(p_1, p_2, p_3, r_1, r_2, r_3)$ & (1,1,2)\\
+		$(p_1, p_2, r_1, p_3, r_2, r_3)$ & (2,2,4)\\
+		$(p_1, p_2, r_1, r_2, p_3, 3_3)$ & (2,2,4)\\
+		$(p_1, p_2, r_1, r_2, r_3, p_3)$ & (2,2,1)\\
+		$(p_1, r_1, p_2, p_3, r_2, r_3)$ & (0,0,0)\\
+		$(p_1, r_1, p_2, r_2, p_3, r_3)$ & (0,0,0)\\
+		$(p_1 ,r_1, p_2, r_2, r_3, p_3)$ & (0,0,1)\\
+		$(p_1, r_1, r_2, p_2, p_3, r_3)$ & (0,2,2)\\
+		$(p_1, r_1, r_2, p_2, r_3, p_3)$ & (0,2,1)\\
+		$(p_1, r_1, r_2, r_3, p_2, p_3)$ & (1,1,2)\\\hline
+	\end{tabular}
+	\begin{tabular}{|c|c|}
+		\hline Verschachtelung $P$ & Endergebnis $(x,y,z)$\\\hline
+		$(r_1, p_1, p_2, p_3, r_2, r_3)$ & (1,1,2)\\
+		$(r_1, p_1, p_2, r_2, p_3, r_3)$ & (1,1,1)\\
+		$(r_1, p_1, p_2, r_2, r_3, p_3)$ & (1,2,1)\\
+		$(r_1, p_1, r_2, p_2, p_3, r_3)$ & (1,2,1)\\
+		$(r_1, p_1, r_2, p_2, r_3, p_3)$ & (1,2,3)\\
+		$(r_1, p_1, r_2, r_3, p_2, p_3)$ & (1,2,1)\\
+		$(r_1, r_2, p_1, p_2, p_3, r_3)$ & (1,2,3) \\
+		$(r_1, r_2, p_1, p_2, r_3, p_3)$ & (1,2,1)\\
+		$(r_1, r_2, p_1, r_3, p_2, p_3)$ & (1,2,1)\\
+		$(r_1, r_2, r_3, p_1, p_2, p_3)$ & (1,2,1)\\\hline
+	\end{tabular}
 	
 	\item Die Reihenfolge der ersten drei Prozesse ist festgelegt, sodass man die Kombinationen zur Verzahnung durch Ziehen ohne Zurücklegen modellieren kann. Für Prozesse $P_1, P_2, ..., P_n$, wobei der $i$-te Prozess $n_i$ Befehle hat gilt die in der Vorlesung behandelte allgemeine Formel:
 	\begin{equation}
@@ -66,8 +93,6 @@ Eine nebenläufige, asynchrone Ausführung von Prozessen führt nicht notwendige
 	\end{equation}
 	Für den betrachteten Fall gilt $n=2$ mit $n_1 = n_2 = 3$, also gibt es $N = \frac{6!}{3!\cdot 3!} = 20$ Möglichkeiten zur Verzahnung der Prozesse.
 \end{enumerate}
-
-
 
 \section*{Aufgabe 6}
 \begin{enumerate}[a)]
